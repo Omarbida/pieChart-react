@@ -10,7 +10,7 @@ export default function Chart({ data }) {
         // label={({ dataEntry }) => dataEntry.value}
         labelStyle={{ color: "#ffffff", fontSize: "7px" }}
       />
-      <div className="flex flex-col gap-2 w-1/3 items-center">
+      <div className="flex flex-col gap-2 w-1/3 pl-3">
         {data.map((item, index) => (
           <div key={index} className="flex items-center gap-2">
             <div
