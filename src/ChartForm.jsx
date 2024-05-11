@@ -1,11 +1,23 @@
 import { useEffect } from "react";
 import { useState } from "react";
 
+const presetColors = [
+  "#FF5733",
+  "#33FF57",
+  "#3366FF",
+  "#FF33CC",
+  "#FFFF33",
+  "#33FFFF",
+  "#9933FF",
+  "#FF3333",
+];
+
 export default function ChartForm({ addData, data }) {
   const [titel, settitle] = useState("");
   const [value, setvalue] = useState("");
   const [color, setcolor] = useState("#000000");
   const [disabled, setdisabled] = useState(true);
+  const [selectedColor, setselectedColor] = useState(0);
   function submite() {
     if (titel && value && color) {
       //check if the total is less than 100
@@ -22,7 +34,7 @@ export default function ChartForm({ addData, data }) {
       addData({ title: titel, value: value, color: color });
       settitle("");
       setvalue("");
-      setcolor("#000000");
+      setcolor("");
     }
   }
   useEffect(() => {
@@ -48,12 +60,24 @@ export default function ChartForm({ addData, data }) {
         placeholder="Enter value"
         className="input input-bordered w-full "
       />
-      <input
-        value={color}
-        onChange={(e) => setcolor(e.target.value)}
-        type="color"
-        className="input input-bordered w-full cursor-pointer"
-      />
+      <div className="flex flex-wrap gap-2">
+        {presetColors.map((item, index) => (
+          <button
+            key={index}
+            onClick={(e) => {
+              e.preventDefault();
+              setcolor(item);
+              setselectedColor(index);
+            }}
+            className={`btn grow h-6  cursor-pointer ${
+              selectedColor === index
+                ? "border-4 border-primary opacity-100"
+                : "border-0 opacity-30"
+            }`}
+            style={{ backgroundColor: item }}
+          ></button>
+        ))}
+      </div>
       <button
         onClick={(e) => {
           e.preventDefault();
