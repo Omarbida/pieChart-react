@@ -41,7 +41,7 @@ export default function ChartForm({ addData }) {
         value={color}
         onChange={(e) => setcolor(e.target.value)}
         type="color"
-        className="input input-bordered w-full "
+        className="input input-bordered w-full cursor-pointer"
       />
       <button
         onClick={(e) => {
