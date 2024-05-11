@@ -1,11 +1,31 @@
+import { useEffect } from "react";
 import { useState } from "react";
 import { PieChart } from "react-minimal-pie-chart";
 
 export default function Chart({ data }) {
+  //check if the total is not 100 and add a grey item to make it 100
+  const [tempData, setTempData] = useState(data);
+  useEffect(() => {
+    let total = 0;
+    data.forEach((item) => {
+      total += item.value;
+    });
+    if (total < 100) {
+      setTempData([
+        ...data,
+        {
+          title: "Other",
+          value: 100 - total,
+          color: "#5C5C5C",
+        },
+      ]);
+    }
+  }, [data]);
+
   return (
     <div className="flex items-center gap-4">
       <PieChart
-        data={data}
+        data={tempData}
         totalValue={100}
         // label={({ dataEntry }) => dataEntry.value}
         labelStyle={{ color: "#ffffff", fontSize: "7px" }}
