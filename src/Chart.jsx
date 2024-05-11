@@ -27,7 +27,8 @@ export default function Chart({ data }) {
       <PieChart
         data={tempData}
         totalValue={100}
-        // label={({ dataEntry }) => dataEntry.value}
+        label={({ dataEntry }) => `${dataEntry.value}%`}
+        labelPosition={80}
         labelStyle={{ color: "#ffffff", fontSize: "7px" }}
       />
       <div className="flex flex-col gap-2 w-1/3 pl-3">
