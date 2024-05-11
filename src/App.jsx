@@ -18,7 +18,7 @@ function App() {
   }, [data]);
   return (
     <div className="flex items-center">
-      <div className="w-1/3 p-4">
+      <div className="w-1/2 p-4">
         <Chart data={data} />
       </div>
       <ChartForm addData={addData} />
