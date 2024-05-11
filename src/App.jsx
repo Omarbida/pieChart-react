@@ -3,12 +3,14 @@ import "./App.css";
 import Chart from "./Chart";
 import ChartForm from "./ChartForm";
 import { useEffect } from "react";
+import SegmentsList from "./SegmentsList";
 
 function App() {
   const [data, setData] = useState([
-    { title: "One", value: 10, color: "#E38627" },
-    { title: "Two", value: 15, color: "#C13C37" },
-    { title: "Three", value: 20, color: "#6A2135" },
+    { title: "One", value: 10, color: "#a81515" },
+    { title: "Two", value: 15, color: "#454393" },
+    { title: "Three", value: 5, color: "#0d3f10" },
+    { title: "Four", value: 70, color: "#653610" },
   ]);
   function addData(newData) {
     setData([...data, newData]);
@@ -21,7 +23,15 @@ function App() {
       <div className="w-1/2 p-4">
         <Chart data={data} />
       </div>
-      <ChartForm addData={addData} />
+      <div className="w-1/2 flex flex-col gap-10 p-4">
+        <ChartForm addData={addData} data={data} />
+        <SegmentsList
+          data={data}
+          removeData={(index) => {
+            setData(data.filter((item, i) => i !== index));
+          }}
+        />
+      </div>
     </div>
   );
 }
